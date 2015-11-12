@@ -2,7 +2,7 @@
 A simple log-rotation library for Go.
 
 ## Installation
-`go get https://github.com/slimmy/gyro`
+`go get github.com/slimmy/gyro`
 
 ## Quick start
 
