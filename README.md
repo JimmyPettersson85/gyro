@@ -77,6 +77,33 @@ logger.SetTimeFunction(func() time.Time {
 })
 ```
 
+### Full example
+Using the above to set up a logger
+```go
+    logger, _ := gyro.New("/tmp")
+    logger.SetSeparator("_")
+    logger.SetPrefix("prefix")
+    logger.SetSuffix("suffix")
+    logger.SetExtension("txt")
+    logger.SetTimeFunction(func() time.Time {
+        loc, _ := time.LoadLocation("Europe/Stockholm")
+        return time.Now().In(loc)
+    })
+    fmt.Println(logger)
+```
+prints
+```
+gyro.Logger
+  path: /tmp
+  prefix: "prefix"
+  suffix: "suffix"
+  separator: "_"
+  extension: "txt"
+  layout: 2006-01-02T15
+  format: prefix_%s_suffix.txt
+  current filename: prefix_2015-11-12T18_suffix.txt
+```
+
 ## Rotation
 
 How often the logs are rotated are defined by the element with the highest resolution in the layout string. By default Gyro rotates logs hourly since the default layout is `2006-01-02T15`. If you want to rotate logs daily the format would be `2006-01-02`, or for each minute (who would want to do that?) `2006-01-02T15:04`.
