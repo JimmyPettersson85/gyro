@@ -1,4 +1,7 @@
 # Gyro
+
+[![build](https://travis-ci.org/slimmy/gyro.svg?branch=master)](https://travis-ci.org/slimmy/gyro)
+
 A simple log-rotation library for persistent log files in Go.
 
 The reason for creating Gyro was to provide file-logging where you could easily have a list of persistent log files divided up in equally big time frames, e.g
