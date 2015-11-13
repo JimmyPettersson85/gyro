@@ -16,6 +16,11 @@ logger.WriteString("Some more data\n")
 
 By default Gyro writes logs in the format of `YYYY-MM-DDTh.log` with the current time in UTC.
 
+## Standard library integration
+
+Gyro implementents the `io.Writer` interface so it can be used with the stdlib logger by calling `log.SetOutput(*gyro.Logger)`.
+Gyro was initially implemented to be used as a stand alone file-logger though, for logging data that needed to persist indefinately (hence there are no deleting of files when it rotates).
+
 ## Configuration
 
 Gyro supports a range of configuration options. All examples given below assume the time and date is `1970-01-01 00:00:00`
