@@ -108,7 +108,11 @@ func TestWrites(t *testing.T) {
 	// Remove the test file after the tests
 	defer os.Remove(fn)
 
-	assert.NoError(t, logger.Write([]byte("test line 1\n")))
+	line := []byte("test line 1\n")
+	n, err := logger.Write(line)
+	assert.NoError(t, err)
+	assert.Equal(t, len(line), n)
+
 	assert.NoError(t, logger.WriteString("test line 2\n"))
 
 	// Read in the file and check that the content matches what we just wrote

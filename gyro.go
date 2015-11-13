@@ -103,27 +103,28 @@ func (l *Logger) FileName() string {
 }
 
 // Write writes the byte data to the log file
-func (l *Logger) Write(data []byte) error {
+func (l *Logger) Write(data []byte) (int, error) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 
 	f, err := os.OpenFile(path.Join(l.path, l.FileName()), flags, fileMode)
 	if err != nil {
-		return err
+		return 0, err
 	}
 	defer f.Close()
 
 	n, err := f.Write(data)
 	if n != len(data) {
-		return fmt.Errorf("Didnt write all data. Wrote %d out of %d bytes", n, len(data))
+		return n, fmt.Errorf("Didnt write all data. Wrote %d out of %d bytes", n, len(data))
 	}
 
-	return err
+	return n, err
 }
 
 // WriteString writes the data string to the log file
 func (l *Logger) WriteString(data string) error {
-	return l.Write([]byte(data))
+	_, err := l.Write([]byte(data))
+	return err
 }
 
 // String returns a debug string of the logger
