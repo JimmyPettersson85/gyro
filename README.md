@@ -1,5 +1,20 @@
 # Gyro
-A simple log-rotation library for Go.
+A simple log-rotation library for persistent log files in Go.
+
+The reason for creating Gyro was to provide file-logging where you could easily have a list of persistent log files divided up in equally big time frames, e.g
+
+```
+myproject_2015-10-09T00.log
+myproject_2015-10-09T01.log
+myproject_2015-10-09T02.log
+myproject_2015-10-09T03.log
+myproject_2015-10-09T04.log
+myproject_2015-10-09T05.log
+myproject_2015-10-09T06.log
+...
+myproject_2015-10-09T23.log
+myproject_2015-10-10T00.log
+```
 
 ## Installation
 `go get github.com/slimmy/gyro`
